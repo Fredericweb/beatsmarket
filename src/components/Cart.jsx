@@ -1,6 +1,8 @@
+import axios from 'axios';
 import React, {useEffect} from 'react';
 
 const tele = window.Telegram.WebApp;
+const telegramData = tele.initDataUnsafe
 
 const Cart = ({cartItems}) => {
 
@@ -13,11 +15,17 @@ if(total > 0) {
         'color': "#2ECC71",
         'text_color': "#F7F9F9"
       })
-      
+     tele.MainButton.onClick (() =>{
+        axios.post("http://localhost:4000/click",{
+            total: total,
+            user: telegramData.user,
+            currence: "UZS"
+        } )
+     })
 }else{
     tele.MainButton.hide()
 }
-
+    
     useEffect(() => {
         tele.ready();
       });
@@ -25,6 +33,7 @@ if(total > 0) {
         
         <div>
             <span>{total}</span>
+            {/* <button onClick={t}>click</button> */}
         </div>
     );
 };
