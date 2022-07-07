@@ -15,17 +15,17 @@ if(total > 0) {
         'color': "#2ECC71",
         'text_color': "#F7F9F9"
       })
-     tele.MainButton.onClick (() =>{
-        axios.post("http://localhost:4000/click",{
-            total: total,
-            user: telegramData.user,
-            currence: "UZS"
-        } )
-     })
+    
 }else{
     tele.MainButton.hide()
 }
-    
+tele.MainButton.onClick (() =>{
+    axios.post("http://localhost:4000/click",{
+        total: total,
+        user: telegramData.user,
+        currence: "UZS"
+    } )
+ })
     useEffect(() => {
         tele.ready();
       });
