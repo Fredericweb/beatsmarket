@@ -20,16 +20,12 @@ if(total > 0) {
     tele.MainButton.hide()
 }
 tele.MainButton.onClick (() =>{
-    
+    axios.post("https://beatsbot0.herokuapp.com/click",{
+        total: total,
+        user: telegramData.user
+    } )
  })
 
- const t = () =>{
-    axios.post("http://localhost:4000/click",{
-        total: total,
-        user: telegramData.user,
-        currence: "UZS"
-    } )
- }
     useEffect(() => {
         tele.ready();
       });
@@ -37,7 +33,7 @@ tele.MainButton.onClick (() =>{
         
         <div>
             <span>{total}</span>
-            <button onClick={t}>click</button>
+            {/* <button onClick={t}>click</button> */}
         </div>
     );
 };
