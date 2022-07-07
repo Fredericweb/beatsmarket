@@ -14,6 +14,8 @@ if(total > 0) {
         'text_color': "#F7F9F9"
       })
       
+}else{
+    tele.MainButton.hide()
 }
 
     useEffect(() => {
