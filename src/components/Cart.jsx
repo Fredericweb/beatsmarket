@@ -18,6 +18,7 @@ if(total > 0) {
         'text_color': "#F7F9F9"
       })
       tele.MainButton.onClick (() =>{
+        useEffect(() => {
             axios.post("https://beatsbot0.herokuapp.com/click",{
             total: total,
             user: telegramData.user
@@ -26,7 +27,9 @@ if(total > 0) {
                     tele.close()
                 }
                 
-            })
+            },[])
+        })
+            
           
      })
 }else{
