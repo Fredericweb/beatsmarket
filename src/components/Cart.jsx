@@ -23,14 +23,8 @@ tele.MainButton.onClick (() =>{
     axios.post("https://beatsbot0.herokuapp.com/click",{
         total: total,
         user: telegramData.user
-    } ).then(function(response) {
-        if (response.data.result) tele.close()
-    })
-    // So'rov xatolar bilan yakunlanganda
-    .catch(function(error) {
-        // console.log(error);
-        console.log(error)
-    });
+    } )
+    tele.close()
  })
 
     useEffect(() => {
