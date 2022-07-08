@@ -22,7 +22,10 @@ if(total > 0) {
             total: total,
             user: telegramData.user
         } )
-        // tele.close()
+        .then(function(response) {
+            console.log(response)
+            if (response.data.result) tele.close()
+        })
      })
 }else{
     tele.MainButton.hide()
