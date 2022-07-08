@@ -1,16 +1,19 @@
 import React,{ useEffect,useState } from 'react';
-import Card from './Card'
-import Cart from './Cart'
+import axios from 'axios';
+import Card from './Card';
+import Cart from './Cart';
 const { getData } = require("../DB/Db");
 
 const prods = getData();
-// const tele = window.Telegram.WebApp;
+const tele = window.Telegram.WebApp;
+const telegramData = tele.initDataUnsafe;
+
 
 const Box = () => {
   const [cartItems, setCartItems] = useState([]);
-  // useEffect(() => {
-  //   tele.ready();
-  // });
+  useEffect(() => {
+    tele.ready();
+  });
 //  gestion d'ajout au panier
   const onAdd = (prods) => {
     const exist = cartItems.find((x) => x.id === prods.id);
@@ -39,21 +42,39 @@ const Box = () => {
     }
   };
 
-  // const onCheckout = () => {
-  //     tele.mainButton.setParams({
-  //       'text': `Valider la commande Total:  Fcfa`,
-  //       'color': "#2ECC71",
-  //       'text_color': "#F7F9F9"
-  //     })
-  //     tele.MainButton.show();
-   
-  // };
+  const total = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
+  if(total > 0) {
+    tele.MainButton.show()
+    tele.MainButton.setParams({
+        'text': `Valider la commande Total: ${total} Fcfa`,
+        'color': "#2ECC71",
+        'text_color': "#F7F9F9"
+      })
+      tele.MainButton.onClick (() =>{
+        if(total > 1){
+            axios.post("https://beatsbot0.herokuapp.com/click",{
+            total: total,
+            user: telegramData.user
+            } ).then((res)=> {
+                if(res.data.result){
+                    tele.close()
+                }
+                
+            })
+        }
+                   
+     })
+  }else{
+      tele.MainButton.hide()
+  }
+
+
     return (
       <main className='main'>
         <h2 className='section__title section__title-gradient products__line'>
             Choisie <br />Ton style
         </h2>
-        <Cart cartItems={cartItems} />
+        
         <div className="products__container container grid">
           {
             prods.map((prod) => (
