@@ -5,9 +5,9 @@ const tele = window.Telegram.WebApp;
 const telegramData = tele.initDataUnsafe
 
 const Cart = ({cartItems}) => {
-    useEffect(() => {
-        tele.ready();
-      });
+    // useEffect(() => {
+    //     tele.ready();
+    //   });
     const total = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
 
 if(total > 0) {
@@ -18,11 +18,16 @@ if(total > 0) {
         'text_color': "#F7F9F9"
       })
       tele.MainButton.onClick (() =>{
-        axios.post("https://beatsbot0.herokuapp.com/click",{
+        useEffect(()=>{
+            axios.post("https://beatsbot0.herokuapp.com/click",{
             total: total,
             user: telegramData.user
-        } )
-        tele.close()
+            } ).then((res)=> {
+                tele.close()
+            })
+        },[])
+        
+        
      })
 }else{
     tele.MainButton.hide()
