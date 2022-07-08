@@ -21,8 +21,11 @@ if(total > 0) {
             axios.post("https://beatsbot0.herokuapp.com/click",{
             total: total,
             user: telegramData.user
-            } ).then(()=> {
-                tele.close()
+            } ).then((req)=> {
+                if(req){
+                    tele.close()
+                }
+                
             })
           
      })
