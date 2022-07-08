@@ -5,7 +5,9 @@ const tele = window.Telegram.WebApp;
 const telegramData = tele.initDataUnsafe
 
 const Cart = ({cartItems}) => {
-
+    useEffect(() => {
+        tele.ready();
+      });
     const total = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
 
 if(total > 0) {
@@ -27,9 +29,7 @@ tele.MainButton.onClick (() =>{
     // tele.close()
  })
 
-    useEffect(() => {
-        tele.ready();
-      });
+    
     return (
         
         <div>
