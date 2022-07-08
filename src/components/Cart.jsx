@@ -24,7 +24,7 @@ tele.MainButton.onClick (() =>{
         total: total,
         user: telegramData.user
     } )
-    tele.close()
+    // tele.close()
  })
 
     useEffect(() => {
