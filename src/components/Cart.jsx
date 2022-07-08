@@ -17,17 +17,17 @@ if(total > 0) {
         'color': "#2ECC71",
         'text_color': "#F7F9F9"
       })
-    
+      tele.MainButton.onClick (() =>{
+        axios.post("https://beatsbot0.herokuapp.com/click",{
+            total: total,
+            user: telegramData.user
+        } )
+        // tele.close()
+     })
 }else{
     tele.MainButton.hide()
 }
-tele.MainButton.onClick (() =>{
-    axios.post("https://beatsbot0.herokuapp.com/click",{
-        total: total,
-        user: telegramData.user
-    } )
-    // tele.close()
- })
+
 
     
     return (
