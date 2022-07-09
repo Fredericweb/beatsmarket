@@ -50,10 +50,11 @@ const Box = () => {
         'text_color': "#F7F9F9"
       })
       tele.MainButton.onClick (() =>{
-        if(total > 1){
+        const totalCart = cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
+        if(totalCart > 1){
             axios.post("https://beatsbot0.herokuapp.com/click",{
-            total: total,
-            user: telegramData.user
+              total: totalCart,
+              user: telegramData.user
             } )
         }
                    
