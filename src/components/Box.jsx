@@ -1,7 +1,6 @@
 import React,{ useEffect,useState } from 'react';
 import axios from 'axios';
 import Card from './Card';
-import Cart from './Cart';
 const { getData } = require("../DB/Db");
 
 const prods = getData();
@@ -46,7 +45,7 @@ const Box = () => {
   if(total > 0) {
     tele.MainButton.show()
     tele.MainButton.setParams({
-        'text': `Valider la commande Total: ${total} Fcfa`,
+        'text': `Valider la commande Total: ${total} $US`,
         'color': "#2ECC71",
         'text_color': "#F7F9F9"
       })
@@ -55,12 +54,7 @@ const Box = () => {
             axios.post("https://beatsbot0.herokuapp.com/click",{
             total: total,
             user: telegramData.user
-            } ).then((res)=> {
-                if(res.data.result){
-                    tele.close()
-                }
-                
-            })
+            } )
         }
                    
      })
