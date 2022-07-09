@@ -14,10 +14,10 @@ const Box = () => {
     tele.ready();
   });
 //  gestion d'ajout au panier
-  const onAdd = (prods) => {
+  const  onAdd = async (prods) => {
     const exist = cartItems.find((x) => x.id === prods.id);
-    if (exist) {
-      setCartItems(
+     if  (exist) {
+     setCartItems(
         cartItems.map((x) =>
           x.id === prods.id ? { ...exist, quantity: exist.quantity + 1 } : x
         )
@@ -28,7 +28,7 @@ const Box = () => {
   };
 
 // gestion de suppression du panier
-  const onRemove = (prods) => {
+  const onRemove = async (prods) => {
     const exist = cartItems.find((x) => x.id === prods.id);
     if (exist.quantity === 1) {
       setCartItems(cartItems.filter((x) => x.id !== prods.id));
