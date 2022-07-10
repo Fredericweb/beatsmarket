@@ -12,7 +12,7 @@ const Box = () => {
   const [cartItems, setCartItems] = useState([]);
   
 //  gestion d'ajout au panier
-  const  onAdd = async (prods) => {
+  const  onAdd = (prods) => {
     const exist = cartItems.find((x) => x.id === prods.id);
      if  (exist) {
      setCartItems(
@@ -38,8 +38,8 @@ const Box = () => {
       );
     }
   };
-  const total = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
-  useEffect(async () => {
+  const total = cartItems.reduce(async (a, c) => a + c.price * c.quantity, 0);
+  useEffect( () => {
     if(total > 1) {
       tele.MainButton.show()
       tele.MainButton.setParams({
