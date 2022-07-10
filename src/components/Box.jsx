@@ -38,8 +38,8 @@ const Box = () => {
       );
     }
   };
-  const total = cartItems.reduce( (a, c) => a + c.price * c.quantity, 0);
-  useEffect( () => {
+  const total = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
+  useEffect(() => {
     if(total > 1) {
       tele.MainButton.show()
       tele.MainButton.setParams({
