@@ -26,7 +26,7 @@ const Box = () => {
   };
 
 // gestion de suppression du panier
-  const onRemove = async (prods) => {
+  const onRemove =  (prods) => {
     const exist = cartItems.find((x) => x.id === prods.id);
     if (exist.quantity === 1) {
       setCartItems(cartItems.filter((x) => x.id !== prods.id));
