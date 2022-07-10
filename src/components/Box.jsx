@@ -39,7 +39,7 @@ const Box = () => {
     }
   };
   const total = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
-  useEffect(() => {
+  useEffect(async () => {
     if(total > 1) {
       tele.MainButton.show()
       tele.MainButton.setParams({
