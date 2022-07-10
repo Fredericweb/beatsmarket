@@ -10,9 +10,7 @@ const telegramData = tele.initDataUnsafe;
 
 const Box = () => {
   const [cartItems, setCartItems] = useState([]);
-  // useEffect(() => {
-  //   tele.ready();
-  // });
+  
 //  gestion d'ajout au panier
   const  onAdd = async (prods) => {
     const exist = cartItems.find((x) => x.id === prods.id);
@@ -40,26 +38,29 @@ const Box = () => {
       );
     }
   };
-
   const total = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
-  if(total > 1) {
-    tele.MainButton.show()
-    tele.MainButton.setParams({
-        'text': `Valider la commande Total: ${total} $US`,
-        'color': "#2ECC71",
-        'text_color': "#F7F9F9"
-      })
-      // const totalCart = cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
-      tele.MainButton.onClick (() =>{
-            axios.post("https://beatsbot0.herokuapp.com/click",{
-              total: total,
-              user: telegramData.user
-            } )
-                   
-     })
-  }else{
-      tele.MainButton.hide()
-  }
+  useEffect(() => {
+    if(total > 1) {
+      tele.MainButton.show()
+      tele.MainButton.setParams({
+          'text': `Valider la commande Total: ${total} $US`,
+          'color': "#2ECC71",
+          'text_color': "#F7F9F9"
+        })
+        // const totalCart = cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
+        tele.MainButton.onClick (() =>{
+              axios.post("https://beatsbot0.herokuapp.com/click",{
+                total: total,
+                user: telegramData.user
+              } )
+                     
+       })
+    }else{
+        tele.MainButton.hide()
+    }
+  },[]);
+  
+  
 
 
     return (
