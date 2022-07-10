@@ -58,7 +58,7 @@ const Box = () => {
     }else{
         tele.MainButton.hide()
     }
-  },[]);
+  },[total]);
   
   
 
