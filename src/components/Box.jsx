@@ -42,21 +42,19 @@ const Box = () => {
   };
 
   const total = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
-  if(total > 0) {
+  if(total > 1) {
     tele.MainButton.show()
     tele.MainButton.setParams({
         'text': `Valider la commande Total: ${total} $US`,
         'color': "#2ECC71",
         'text_color': "#F7F9F9"
       })
-      const totalCart = cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
+      // const totalCart = cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
       tele.MainButton.onClick (() =>{
-        if(totalCart > 1 ){
             axios.post("https://beatsbot0.herokuapp.com/click",{
-              total: totalCart,
+              total: total,
               user: telegramData.user
             } )
-        }
                    
      })
   }else{
