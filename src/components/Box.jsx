@@ -52,12 +52,12 @@ const Box = () => {
       tele.MainButton.onClick (() =>{
         const totalCart = cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
         let count = 0
-        if(totalCart > 1 && count !==0){
+        if(totalCart > 1 && count == 0){
             axios.post("https://beatsbot0.herokuapp.com/click",{
               total: totalCart,
               user: telegramData.user
             } )
-            count++
+            count= 1
         }
                    
      })
