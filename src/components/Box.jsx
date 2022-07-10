@@ -10,9 +10,9 @@ const telegramData = tele.initDataUnsafe;
 
 const Box = () => {
   const [cartItems, setCartItems] = useState([]);
-  useEffect(() => {
-    tele.ready();
-  });
+  // useEffect(() => {
+  //   tele.ready();
+  // });
 //  gestion d'ajout au panier
   const  onAdd = async (prods) => {
     const exist = cartItems.find((x) => x.id === prods.id);
